@@ -8,7 +8,7 @@ This module provides the Torrent class for representing qBittorrent torrents.
 """
 
 from datetime import datetime
-from typing import Dict, List, Optional, Any
+from typing import Dict, Any
 
 
 class Torrent:

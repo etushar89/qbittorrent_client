@@ -7,12 +7,10 @@ QBittorrent CLI Module
 This module provides a command-line interface for the QBittorrent client.
 """
 
-import os
 import sys
 import argparse
 import getpass
 import logging
-from typing import Dict, List, Optional, Any
 
 from qbittorrent_client import QBittorrentClient, QBittorrentAPIError
 from torrent import Torrent

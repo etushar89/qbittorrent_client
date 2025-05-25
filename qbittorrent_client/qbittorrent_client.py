@@ -8,11 +8,9 @@ This module provides a Python client for the qBittorrent Web API.
 It allows for authentication and interaction with torrents.
 """
 
-import os
-import json
 import logging
 import requests
-from typing import Dict, List, Optional, Union, Any
+from typing import Dict, List, Optional
 from urllib.parse import urljoin
 
 
