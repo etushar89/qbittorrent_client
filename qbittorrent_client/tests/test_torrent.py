@@ -23,7 +23,7 @@ class TestTorrent(unittest.TestCase):
             "size": 1073741824,  # 1 GB
             "progress": 0.75,
             "dlspeed": 1048576,  # 1 MB/s
-            "upspeed": 524288,   # 512 KB/s
+            "upspeed": 524288,  # 512 KB/s
             "num_seeds": 5,
             "num_leechs": 10,
             "state": "downloading",
@@ -31,7 +31,7 @@ class TestTorrent(unittest.TestCase):
             "category": "test",
             "tags": "test,example",
             "added_on": 1621698000,  # Example timestamp
-            "completion_on": 0
+            "completion_on": 0,
         }
         self.torrent = Torrent(self.torrent_data)
 
@@ -51,7 +51,7 @@ class TestTorrent(unittest.TestCase):
     def test_is_downloading(self):
         """Test the is_downloading property."""
         self.assertTrue(self.torrent.is_downloading)
-        
+
         # Test with different states
         self.torrent.state = "uploading"
         self.assertFalse(self.torrent.is_downloading)
@@ -59,7 +59,7 @@ class TestTorrent(unittest.TestCase):
     def test_is_complete(self):
         """Test the is_complete property."""
         self.assertFalse(self.torrent.is_complete)
-        
+
         # Test with complete progress
         self.torrent.progress = 1.0
         self.assertTrue(self.torrent.is_complete)
@@ -67,7 +67,7 @@ class TestTorrent(unittest.TestCase):
     def test_is_paused(self):
         """Test the is_paused property."""
         self.assertFalse(self.torrent.is_paused)
-        
+
         # Test with paused state
         self.torrent.state = "pausedDL"
         self.assertTrue(self.torrent.is_paused)

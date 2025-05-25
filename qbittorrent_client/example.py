@@ -8,17 +8,17 @@ This script demonstrates how to use the qBittorrent client to authenticate
 and retrieve a list of torrents.
 """
 
+import argparse
+import getpass
 import os
 import sys
-import getpass
-import argparse
 from typing import Dict, List
 
 from qbittorrent_client import (
-    QBittorrentClient,
-    QBittorrentAPIError,
-    Torrent,
     CredentialsManager,
+    QBittorrentAPIError,
+    QBittorrentClient,
+    Torrent,
 )
 
 
@@ -64,13 +64,9 @@ def parse_arguments() -> argparse.Namespace:
         "--password", help="QBittorrent WebUI password (will prompt if not provided)"
     )
 
-    parser.add_argument(
-        "--cache", action="store_true", help="Cache credentials for future use"
-    )
+    parser.add_argument("--cache", action="store_true", help="Cache credentials for future use")
 
-    parser.add_argument(
-        "--clear-cache", action="store_true", help="Clear cached credentials"
-    )
+    parser.add_argument("--clear-cache", action="store_true", help="Clear cached credentials")
 
     return parser.parse_args()
 

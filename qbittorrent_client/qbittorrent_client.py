@@ -9,9 +9,10 @@ It allows for authentication and interaction with torrents.
 """
 
 import logging
-import requests
 from typing import Dict, List, Optional
 from urllib.parse import urljoin
+
+import requests
 
 
 class QBittorrentAPIError(Exception):
@@ -55,9 +56,7 @@ class QBittorrentClient:
         # Add handler if none exists
         if not logger.handlers:
             handler = logging.StreamHandler()
-            formatter = logging.Formatter(
-                "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-            )
+            formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
             handler.setFormatter(formatter)
             logger.addHandler(handler)
 

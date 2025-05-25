@@ -6,8 +6,8 @@ Tests for the CredentialsManager class.
 """
 
 import os
-import unittest
 import tempfile
+import unittest
 from pathlib import Path
 
 from qbittorrent_client import CredentialsManager
@@ -81,9 +81,7 @@ class TestCredentialsManager(unittest.TestCase):
         new_username = "newuser"
         new_password = "newpass"
         result_url, result_username, result_password = (
-            self.credentials_manager.get_url_username_password(
-                new_url, new_username, new_password
-            )
+            self.credentials_manager.get_url_username_password(new_url, new_username, new_password)
         )
         self.assertEqual(result_url, new_url)
         self.assertEqual(result_username, new_username)

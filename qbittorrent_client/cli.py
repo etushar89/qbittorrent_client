@@ -7,14 +7,14 @@ QBittorrent CLI Module
 This module provides a command-line interface for the QBittorrent client.
 """
 
-import sys
 import argparse
 import getpass
 import logging
+import sys
 
-from qbittorrent_client.qbittorrent_client import QBittorrentClient, QBittorrentAPIError
-from qbittorrent_client.torrent import Torrent
 from qbittorrent_client.credentials import CredentialsManager
+from qbittorrent_client.qbittorrent_client import QBittorrentAPIError, QBittorrentClient
+from qbittorrent_client.torrent import Torrent
 
 
 def setup_logging() -> logging.Logger:
@@ -99,9 +99,7 @@ def parse_arguments() -> argparse.Namespace:
         help="Show detailed information for each torrent",
     )
 
-    parser.add_argument(
-        "-v", "--verbose", action="store_true", help="Enable verbose output"
-    )
+    parser.add_argument("-v", "--verbose", action="store_true", help="Enable verbose output")
 
     return parser.parse_args()
 
@@ -139,9 +137,7 @@ def display_torrent(torrent: Torrent, detailed: bool = False) -> None:
             print(f"  Tags: {torrent.tags}")
         print(f"  Added on: {torrent.added_on.strftime('%Y-%m-%d %H:%M:%S')}")
         if torrent.completion_on:
-            print(
-                f"  Completed on: {torrent.completion_on.strftime('%Y-%m-%d %H:%M:%S')}"
-            )
+            print(f"  Completed on: {torrent.completion_on.strftime('%Y-%m-%d %H:%M:%S')}")
         print()
 
 

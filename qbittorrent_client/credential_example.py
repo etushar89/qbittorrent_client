@@ -8,23 +8,21 @@ This script demonstrates how to use the credential caching feature
 of the qBittorrent client.
 """
 
+import argparse
+import getpass
 import os
 import sys
-import getpass
-import argparse
 
 from qbittorrent_client import (
-    QBittorrentClient,
-    QBittorrentAPIError,
     CredentialsManager,
+    QBittorrentAPIError,
+    QBittorrentClient,
 )
 
 
 def parse_arguments() -> argparse.Namespace:
     """Parse command-line arguments."""
-    parser = argparse.ArgumentParser(
-        description="qBittorrent Client Credential Caching Example"
-    )
+    parser = argparse.ArgumentParser(description="qBittorrent Client Credential Caching Example")
 
     parser.add_argument("--save", action="store_true", help="Save credentials")
 
@@ -95,9 +93,7 @@ def main() -> None:
         if torrents:
             print("\nTorrent list:")
             for i, torrent_data in enumerate(torrents[:5], 1):  # Show max 5 torrents
-                print(
-                    f"{i}. {torrent_data['name']} - {torrent_data['progress'] * 100:.1f}%"
-                )
+                print(f"{i}. {torrent_data['name']} - {torrent_data['progress'] * 100:.1f}%")
 
             if len(torrents) > 5:
                 print(f"...and {len(torrents) - 5} more.")
@@ -108,9 +104,7 @@ def main() -> None:
 
     except QBittorrentAPIError as e:
         print(f"Error: {e}")
-        print(
-            "Your saved credentials may be invalid. Try clearing them and saving again."
-        )
+        print("Your saved credentials may be invalid. Try clearing them and saving again.")
         sys.exit(1)
 
 
