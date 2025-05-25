@@ -12,9 +12,9 @@ import argparse
 import getpass
 import logging
 
-from qbittorrent_client import QBittorrentClient, QBittorrentAPIError
-from torrent import Torrent
-from credentials import CredentialsManager
+from qbittorrent_client.qbittorrent_client import QBittorrentClient, QBittorrentAPIError
+from qbittorrent_client.torrent import Torrent
+from qbittorrent_client.credentials import CredentialsManager
 
 
 def setup_logging() -> logging.Logger:

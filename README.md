@@ -1,5 +1,7 @@
 # qBittorrent Client
 
+[![Python Checks](https://github.com/etushar89/qbittorrent-client/actions/workflows/python-checks.yml/badge.svg)](https://github.com/etushar89/qbittorrent-client/actions/workflows/python-checks.yml)
+
 A Python client for interacting with the qBittorrent Web API (v5.0+).
 
 ## Features
@@ -130,6 +132,47 @@ A class representing a torrent in qBittorrent.
 
 - Python 3.7+
 - requests library
+
+## Development
+
+### Setting Up Development Environment
+
+```bash
+# Install package in development mode
+pip install -e .
+
+# Install development dependencies
+pip install -r requirements-dev.txt
+```
+
+### Running Tests
+
+```bash
+# Run all tests
+pytest
+
+# Run tests with coverage
+pytest --cov=qbittorrent_client
+
+# Run specific test file
+pytest qbittorrent_client/tests/test_torrent.py
+```
+
+### Code Formatting and Linting
+
+```bash
+# Format code with Black
+black qbittorrent_client
+
+# Sort imports
+isort qbittorrent_client
+
+# Run flake8 linting
+flake8 qbittorrent_client
+
+# Run type checking
+mypy qbittorrent_client
+```
 
 ## License
 
