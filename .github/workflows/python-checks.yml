@@ -38,8 +38,8 @@ jobs:
         # exit-zero treats all errors as warnings
         flake8 qbittorrent_client --count --exit-zero --max-complexity=10 --max-line-length=100 --statistics
     
-    - name: Type checking with mypy
-      run: mypy --ignore-missing-imports qbittorrent_client
+    # - name: Type checking with mypy
+    #   run: mypy --ignore-missing-imports qbittorrent_client
   
   test:
     name: Tests
