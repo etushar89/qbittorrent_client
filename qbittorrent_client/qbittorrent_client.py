@@ -284,3 +284,34 @@ class QBittorrentClient:
         except QBittorrentAPIError as error:
             self.logger.error(f"Failed to get API version: {error}")
             raise
+
+    def rename_torrent(self, torrent_hash: str, new_name: str) -> bool:
+        """
+        Rename a torrent.
+
+        Args:
+            torrent_hash: The hash of the torrent to rename.
+            new_name: The new name for the torrent.
+
+        Returns:
+            bool: True if renaming was successful.
+
+        Raises:
+            QBittorrentAPIError: If the request fails or if not authenticated.
+        """
+        if not self.is_authenticated:
+            self.logger.error("Not authenticated. Please log in first.")
+            raise QBittorrentAPIError("Not authenticated. Please log in first.")
+
+        self.logger.info(f"Renaming torrent with hash: {torrent_hash}")
+
+        data = {"hash": torrent_hash, "name": new_name}
+
+        try:
+            self._make_request("torrents/rename", method="POST", data=data)
+            self.logger.info(f"Successfully renamed torrent: {torrent_hash} to '{new_name}'")
+            return True
+
+        except QBittorrentAPIError as error:
+            self.logger.error(f"Failed to rename torrent: {error}")
+            raise

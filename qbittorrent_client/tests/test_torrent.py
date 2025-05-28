@@ -84,6 +84,26 @@ class TestTorrent(unittest.TestCase):
         expected_start = "Test Torrent - 75.0% - 1.00 GB"
         self.assertTrue(str(self.torrent).startswith(expected_start))
 
+    def test_rename_method(self):
+        """Test the rename method."""
+        # Create a mock client with a rename_torrent method
+        mock_client = unittest.mock.Mock()
+        mock_client.rename_torrent.return_value = True
+
+        # Rename the torrent
+        result = self.torrent.rename(mock_client, "New Torrent Name")
+
+        # Check that the client method was called with the right parameters
+        mock_client.rename_torrent.assert_called_once_with(
+            self.torrent.hash, "New Torrent Name"
+        )
+
+        # Check that the rename operation was successful
+        self.assertTrue(result)
+
+        # Check that the torrent name was updated
+        self.assertEqual(self.torrent.name, "New Torrent Name")
+
 
 if __name__ == "__main__":
     unittest.main()

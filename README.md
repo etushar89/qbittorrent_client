@@ -18,8 +18,7 @@ A Python client for interacting with the qBittorrent Web API (v5.0+).
 ### From Source
 
 ```bash
-git clone https://github.com/etushar89/qbittorrent-client.git
-cd qbittorrent-client
+git clone https://github.com/etushar89/qbittorrent_client.git
 pip install -e .
 ```
 
@@ -80,6 +79,10 @@ for torrent in torrents:
 torrent_hash = torrents[0].hash
 properties = client.get_torrent_properties(torrent_hash)
 
+# Rename a torrent
+if torrents:
+    client.rename_torrent(torrents[0].hash, "New Torrent Name")
+
 # Logout
 client.logout()
 ```
@@ -96,6 +99,7 @@ The main class for interacting with the qBittorrent Web API.
 - `logout()`: Log out from the WebUI
 - `get_torrents(filter_status='all', **kwargs)`: Get a list of torrents
 - `get_torrent_properties(torrent_hash)`: Get properties of a specific torrent
+- `rename_torrent(torrent_hash, new_name)`: Rename a specific torrent
 - `get_app_version()`: Get the qBittorrent application version
 - `get_api_version()`: Get the qBittorrent Web API version
 
