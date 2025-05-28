@@ -5,10 +5,7 @@
 Tests for the CredentialsManager class.
 """
 
-import os
-import tempfile
 import unittest
-from pathlib import Path
 
 from qbittorrent_client import CredentialsManager
 

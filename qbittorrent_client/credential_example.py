@@ -10,7 +10,6 @@ of the qBittorrent client.
 
 import argparse
 import getpass
-import os
 import sys
 
 from qbittorrent_client import (

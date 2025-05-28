@@ -20,11 +20,11 @@ class TestQBittorrentClient(unittest.TestCase):
         patcher = patch("qbittorrent_client.qbittorrent_client.requests.Session")
         self.mock_session = patcher.start()
         self.addCleanup(patcher.stop)
-        
+
         # Configure the mock session
         self.session_instance = Mock()
         self.mock_session.return_value = self.session_instance
-        
+
         self.client = QBittorrentClient("http://localhost:8080")
 
     def test_initialization(self):
@@ -77,12 +77,12 @@ class TestQBittorrentClient(unittest.TestCase):
 
         # Check assertions
         self.assertEqual(version, "2.0")
-        
+
     def test_rename_torrent_success(self):
         """Test successful torrent rename."""
         # Setup authentication
         self.client.is_authenticated = True
-        
+
         # Setup mock response
         mock_response = Mock()
         mock_response.raise_for_status.return_value = None
@@ -99,7 +99,7 @@ class TestQBittorrentClient(unittest.TestCase):
             params=None,
             data={"hash": "test_hash", "name": "New Name"},
             files=None,
-            headers={"Referer": "http://localhost:8080/"}
+            headers={"Referer": "http://localhost:8080/"},
         )
 
     def test_rename_torrent_not_authenticated(self):

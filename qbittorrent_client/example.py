@@ -10,17 +10,16 @@ and retrieve a list of torrents.
 
 import argparse
 import getpass
-import os
 import sys
-from typing import Dict, List
+
+from credentials import CredentialsManager
+from torrent import Torrent
 
 from qbittorrent_client import (
     QBittorrentAPIError,
     QBittorrentClient,
 )
 
-from credentials import CredentialsManager
-from torrent import Torrent
 
 def display_torrent_info(torrent: Torrent) -> None:
     """
@@ -67,8 +66,12 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument("--cache", action="store_true", help="Cache credentials for future use")
     parser.add_argument("--clear-cache", action="store_true", help="Clear cached credentials")
 
-    parser.add_argument("--rename", nargs=2, metavar=('HASH', 'NAME'), 
-                      help="Rename a torrent with the specified hash to the new name")
+    parser.add_argument(
+        "--rename",
+        nargs=2,
+        metavar=("HASH", "NAME"),
+        help="Rename a torrent with the specified hash to the new name",
+    )
 
     return parser.parse_args()
 
@@ -87,7 +90,7 @@ def main() -> None:
             print("Cached credentials cleared successfully.")
         else:
             print("No cached credentials found.")
-        return    # Try to get credentials from cache or command line
+        return  # Try to get credentials from cache or command line
     url, username, password = credentials_manager.get_url_username_password(
         args.url, args.username, args.password
     )
@@ -99,7 +102,7 @@ def main() -> None:
     # If password is still not available, prompt for it
     if not password:
         password = getpass.getpass("Password: ")
-        
+
     # Handle the rename argument separately if provided
     rename_hash = None
     rename_name = None
@@ -119,12 +122,12 @@ def main() -> None:
             if credentials_manager.save_credentials(url, username, password):
                 print("Credentials cached for future use.")
             else:
-                print("Failed to cache credentials.")        # Get qBittorrent version information
+                print("Failed to cache credentials.")  # Get qBittorrent version information
         api_version = client.get_api_version()
         app_version = client.get_app_version()
         print(f"qBittorrent version: {app_version}")
         print(f"API version: {api_version}")
-        
+
         # Handle torrent rename if requested via command line
         if rename_hash and rename_name:
             try:
@@ -138,7 +141,7 @@ def main() -> None:
         torrents_data = client.get_torrents()
 
         # Create Torrent objects from raw data
-        torrents = [Torrent(data) for data in torrents_data]        # Display torrent information
+        torrents = [Torrent(data) for data in torrents_data]  # Display torrent information
         if not torrents:
             print("No torrents found.")
         else:
@@ -146,8 +149,11 @@ def main() -> None:
             for i, torrent in enumerate(torrents, 1):
                 print(f"Torrent {i}:")
                 display_torrent_info(torrent)
-              # Demonstrate renaming functionality for the first torrent
-            if torrents and input("\nDo you want to rename the first torrent? (y/n): ").lower() == 'y':
+            # Demonstrate renaming functionality for the first torrent
+            if (
+                torrents
+                and input("\nDo you want to rename the first torrent? (y/n): ").lower() == "y"
+            ):
                 first_torrent = torrents[0]
                 new_name = input(f"Enter new name for '{first_torrent.name}': ")
                 if new_name:

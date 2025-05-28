@@ -6,7 +6,6 @@ Tests for the Torrent class.
 """
 
 import unittest
-from datetime import datetime
 
 from qbittorrent_client.torrent import Torrent
 
@@ -94,9 +93,7 @@ class TestTorrent(unittest.TestCase):
         result = self.torrent.rename(mock_client, "New Torrent Name")
 
         # Check that the client method was called with the right parameters
-        mock_client.rename_torrent.assert_called_once_with(
-            self.torrent.hash, "New Torrent Name"
-        )
+        mock_client.rename_torrent.assert_called_once_with(self.torrent.hash, "New Torrent Name")
 
         # Check that the rename operation was successful
         self.assertTrue(result)

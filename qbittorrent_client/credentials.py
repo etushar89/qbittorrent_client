@@ -69,10 +69,9 @@ class CredentialsManager:
         Get credentials from the temporary file.
 
         Args:
-            url: The qBittorrent WebUI URL to match (if None, return any saved credentials)
-
-        Returns:
-            Optional[Dict[str, str]]: A dictionary containing the credentials if found, None otherwise
+            url: The qBittorrent WebUI URL to match (if None, return any saved credentials)        Returns:
+            Optional[Dict[str, str]]: A dictionary containing the credentials if found,
+                                      None otherwise
         """
         if not self.credentials_file.exists():
             self.logger.debug("Credentials file not found")

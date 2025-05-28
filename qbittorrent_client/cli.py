@@ -85,10 +85,11 @@ def parse_arguments() -> argparse.Namespace:
 
     parser.add_argument("--sort", help="Sort torrents by field")
 
-    parser.add_argument("--reverse", action="store_true", help="Reverse sort order")    parser.add_argument("--limit", type=int, help="Limit number of torrents to show")
+    parser.add_argument("--reverse", action="store_true", help="Reverse sort order")
+    parser.add_argument("--limit", type=int, help="Limit number of torrents to show")
 
     parser.add_argument("--category", help="Filter by category")
-    
+
     parser.add_argument("--tag", help="Filter by tag")
 
     parser.add_argument(
@@ -96,12 +97,12 @@ def parse_arguments() -> argparse.Namespace:
         action="store_true",
         help="Show detailed information for each torrent",
     )
-    
+
     parser.add_argument(
         "--rename",
         nargs=2,
-        metavar=('HASH', 'NAME'),
-        help="Rename a torrent with the specified hash to the new name"
+        metavar=("HASH", "NAME"),
+        help="Rename a torrent with the specified hash to the new name",
     )
 
     parser.add_argument("-v", "--verbose", action="store_true", help="Enable verbose output")

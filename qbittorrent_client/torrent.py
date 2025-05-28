@@ -212,18 +212,18 @@ class Torrent:
             str: A string with the torrent's class name and hash.
         """
         return f"<Torrent {self.hash}: {self.name}>"
-        
+
     def rename(self, client, new_name: str) -> bool:
         """
         Rename the torrent.
-        
+
         Args:
             client: A QBittorrentClient instance that is authenticated.
             new_name: The new name to give the torrent.
-            
+
         Returns:
             bool: True if renaming was successful.
-            
+
         Raises:
             QBittorrentAPIError: If renaming fails or client is not authenticated.
         """
